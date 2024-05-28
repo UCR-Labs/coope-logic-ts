@@ -7,28 +7,25 @@ class Cache {
     this.cache = {};
   }
 
-  public SetKeyValue(
-    key: string,
-    value: any,
-    callback: (error: Error | null) => void
-  ): void {
-    if (!key || !value) {
-      return callback(new Error("Invalid key or value"));
-    }
-    this.cache[key] = value;
-    callback(null);
+  public SetKeyValue(key: string, value: any): Promise<void> {
+    return new Promise((resolve, reject) => {
+      if (!key || !value) {
+        return reject(new Error("Invalid key or value"));
+      }
+      this.cache[key] = value;
+      resolve();
+    });
   }
 
-  public GetKeyValue(
-    key: string,
-    callback: (error: Error | null, value: any) => void
-  ): void {
-    try {
-      const value = this.cache[key] !== undefined ? this.cache[key] : null;
-      callback(null, value);
-    } catch (err) {
-      callback(err as Error | null, null);
-    }
+  public GetKeyValue(key: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      try {
+        const value = this.cache[key] !== undefined ? this.cache[key] : null;
+        resolve(value);
+      } catch (err) {
+        reject(err);
+      }
+    });
   }
 }
 
