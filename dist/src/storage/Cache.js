@@ -4,21 +4,25 @@ class Cache {
     constructor() {
         this.cache = {};
     }
-    SetKeyValue(key, value, callback) {
-        if (!key || !value) {
-            return callback(new Error("Invalid key or value"));
-        }
-        this.cache[key] = value;
-        callback(null);
+    SetKeyValue(key, value) {
+        return new Promise((resolve, reject) => {
+            if (!key || !value) {
+                return reject(new Error("Invalid key or value"));
+            }
+            this.cache[key] = value;
+            resolve();
+        });
     }
-    GetKeyValue(key, callback) {
-        try {
-            const value = this.cache[key] !== undefined ? this.cache[key] : null;
-            callback(null, value);
-        }
-        catch (err) {
-            callback(err, null);
-        }
+    GetKeyValue(key) {
+        return new Promise((resolve, reject) => {
+            try {
+                const value = this.cache[key] !== undefined ? this.cache[key] : null;
+                resolve(value);
+            }
+            catch (err) {
+                reject(err);
+            }
+        });
     }
 }
 exports.default = Cache;
