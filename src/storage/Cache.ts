@@ -3,7 +3,7 @@
 class Cache {
   private cache: { [key: string]: any };
 
-  constructor() {
+  public constructor() {
     this.cache = {};
   }
 
