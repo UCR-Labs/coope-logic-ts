@@ -1,4 +1,4 @@
-export default class Cache {
+export class Cache {
   private cache: { [key: string]: any };
 
   public constructor() {
