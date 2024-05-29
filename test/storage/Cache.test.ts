@@ -19,11 +19,12 @@ describe("Cache", function () {
         await cache.SetKeyValue("", "value1");
         // If no error is thrown, fail the test
         throw new Error("Invalid key or value did not throw an error");
-      } catch (err) {
+      } catch (err: any) {
+        // Asserting err as any for flexibility
         // Expecting an error of type Error
         expect(err).to.be.an.instanceOf(Error);
         // Additionally, you might want to assert the error message
-        expect(err.message).to.equal("Invalid key or value");
+        expect((err as Error).message).to.equal("Invalid key or value");
       }
     });
   });
