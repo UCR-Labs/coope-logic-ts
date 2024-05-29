@@ -3,4 +3,3 @@ export {
   localStorageSetKeyValue,
   localStorageGetKeyValue,
 } from "./src/storage/LocalStorage";
-export { sqliteSetKeyValue, sqliteGetKeyValue } from "./src/storage/SQLite";

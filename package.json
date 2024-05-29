@@ -21,10 +21,9 @@
   "homepage": "https://github.com/UCR-Labs/coope-logic-ts#readme",
   "devDependencies": {
     "nyc": "^15.1.0",
+    "path-browserify": "^1.0.1",
     "sinon": "^18.0.0",
-    "typescript": "^5.4.5", 
-    "sqlite": "^5.1.1",
-    "sqlite3": "^5.1.7"
+    "typescript": "^5.4.5"
   },
   "dependencies": {
     "@types/node": "^20.12.12",
