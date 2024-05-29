@@ -4,7 +4,7 @@ interface Cache {
 
 let cache: Cache = {};
 
-export function setKeyValue(key: string, value: any): Promise<void> {
+export function cacheSetKeyValue(key: string, value: any): Promise<void> {
   return new Promise((resolve, reject) => {
     if (!key || !value) {
       return reject(new Error("Invalid key or value"));
@@ -14,7 +14,7 @@ export function setKeyValue(key: string, value: any): Promise<void> {
   });
 }
 
-export function getKeyValue(key: string): Promise<any> {
+export function cacheGetKeyValue(key: string): Promise<any> {
   return new Promise((resolve, reject) => {
     try {
       const value = cache[key] !== undefined ? cache[key] : null;
