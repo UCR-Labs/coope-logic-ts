@@ -1,4 +1,1 @@
-import Cache from "./src/storage/Cache";
-module.exports = {
-  Cache: Cache
-};
+export { Cache } from "./src/storage/Cache";

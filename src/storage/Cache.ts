@@ -1,6 +1,6 @@
 "use strict";
 
-class Cache {
+export class Cache {
   private cache: { [key: string]: any };
 
   public constructor() {
@@ -28,5 +28,3 @@ class Cache {
     });
   }
 }
-
-export default Cache;
