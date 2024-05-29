@@ -2,10 +2,8 @@
   "name": "coope-logic-ts",
   "version": "1.0.8",
   "description": "",
-  "main": "./lib/index.ts",
-  "module": "./lib/index.js",
-  "types": "./lib/index.d.ts",
-  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "build": "tsc",
     "test": "mocha --require ts-node/register test/**/*.test.ts",

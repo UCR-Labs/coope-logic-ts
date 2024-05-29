@@ -1,1 +1,1 @@
-export { Cache } from "./src/storage/Cache";
+export { setKeyValue, getKeyValue } from "./src/storage/Cache";
