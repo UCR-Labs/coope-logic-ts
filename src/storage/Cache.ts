@@ -1,28 +1,26 @@
-export class Cache {
-  private cache: { [key: string]: any };
+interface Cache {
+  [key: string]: any;
+}
 
-  public constructor() {
-    this.cache = {};
-  }
+let cache: Cache = {};
 
-  public SetKeyValue(key: string, value: any): Promise<void> {
-    return new Promise((resolve, reject) => {
-      if (!key || !value) {
-        return reject(new Error("Invalid key or value"));
-      }
-      this.cache[key] = value;
-      resolve();
-    });
-  }
+export function setKeyValue(key: string, value: any): Promise<void> {
+  return new Promise((resolve, reject) => {
+    if (!key || !value) {
+      return reject(new Error("Invalid key or value"));
+    }
+    cache[key] = value;
+    resolve();
+  });
+}
 
-  public GetKeyValue(key: string): Promise<any> {
-    return new Promise((resolve, reject) => {
-      try {
-        const value = this.cache[key] !== undefined ? this.cache[key] : null;
-        resolve(value);
-      } catch (err) {
-        reject(err);
-      }
-    });
-  }
+export function getKeyValue(key: string): Promise<any> {
+  return new Promise((resolve, reject) => {
+    try {
+      const value = cache[key] !== undefined ? cache[key] : null;
+      resolve(value);
+    } catch (err) {
+      reject(err);
+    }
+  });
 }
