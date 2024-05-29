@@ -1,5 +1,3 @@
-"use strict";
-
 export default class Cache {
   private cache: { [key: string]: any };
 

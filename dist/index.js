@@ -1,6 +1,10 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Cache = void 0;
-var Cache_1 = require("./src/storage/Cache");
-Object.defineProperty(exports, "Cache", { enumerable: true, get: function () { return Cache_1.Cache; } });
+const Cache_1 = __importDefault(require("./src/storage/Cache"));
+exports.Cache = Cache_1.default;
+exports.default = Cache_1.default;
 //# sourceMappingURL=index.js.map

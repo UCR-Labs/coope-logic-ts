@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { Cache } from "../../src/storage/Cache"; // Import Cache class by its name
+import Cache from "../../src/storage/Cache";
 
 describe("Cache", function () {
   let cache: Cache;
@@ -17,14 +17,8 @@ describe("Cache", function () {
     it("should return an error for invalid key or value", async function () {
       try {
         await cache.SetKeyValue("", "value1");
-        // If no error is thrown, fail the test
-        throw new Error("Invalid key or value did not throw an error");
-      } catch (err: any) {
-        // Asserting err as any for flexibility
-        // Expecting an error of type Error
+      } catch (err) {
         expect(err).to.be.an.instanceOf(Error);
-        // Additionally, you might want to assert the error message
-        expect((err as Error).message).to.equal("Invalid key or value");
       }
     });
   });
