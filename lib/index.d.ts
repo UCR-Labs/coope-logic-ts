@@ -1,2 +1,2 @@
-export { cacheSetKeyValue, cacheGetKeyValue } from "./src/storage/Cache";
-export { localStorageSetKeyValue, localStorageGetKeyValue, } from "./src/storage/LocalStorage";
+export { cacheSetKeyValue, cacheGetKeyValue, cacheKeyExists, } from "./src/storage/Cache";
+export { localStorageSetKeyValue, localStorageGetKeyValue, localStorageKeyExists, } from "./src/storage/LocalStorage";

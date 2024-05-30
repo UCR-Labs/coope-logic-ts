@@ -26,3 +26,10 @@ export function localStorageGetKeyValue(key: string): Promise<any> {
     }
   });
 }
+
+export function localStorageKeyExists(key: string): Promise<boolean> {
+  return new Promise((resolve) => {
+    const item = localStorage.getItem(key);
+    resolve(item !== null);
+  });
+}
