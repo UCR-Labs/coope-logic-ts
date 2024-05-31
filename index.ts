@@ -8,3 +8,6 @@ export {
   localStorageGetKeyValue,
   localStorageKeyExists,
 } from "./src/storage/LocalStorage";
+export {
+  updateDocumentValue
+}from "./src/functions/UpdateDocumentValue";
