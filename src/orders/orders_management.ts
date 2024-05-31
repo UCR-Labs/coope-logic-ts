@@ -1,139 +1,191 @@
-import * as functions from "firebase-functions";
+import { Change, EventContext } from "firebase-functions";
 import * as admin from "firebase-admin";
 import { FirestoreCollections, Order, OrderStatus } from "rideTypes";
 
-export const updateOrder = functions.firestore
-  .document(FirestoreCollections.orders + "/{docId}")
-  .onUpdate(async (change, context) => {
-    const db = admin.firestore();
-    const newOrder: Order = change.after.data() as Order;
-    const newOrderStatus: OrderStatus = newOrder.status;
-    const orderId = context.params.docId;
+export function updateOrder(
+  change: Change<admin.firestore.DocumentSnapshot>,
+  context: EventContext
+): Promise<void> {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const db = admin.firestore();
+      const newOrder: Order = change.after.data() as Order;
+      const newOrderStatus: OrderStatus = newOrder.status;
+      const orderId = context.params.docId;
 
-    let fcmToken = "";
-    await getUserFCMToken(db, newOrder.customerId).then(
-      (token) => (fcmToken = token)
-    );
+      let fcmToken = await getUserFCMToken(db, newOrder.customerId);
 
-    let bikerName = "";
-    await getBikerName(db, newOrder.bikerId).then((name) => (bikerName = name));
+      let bikerName = await getBikerName(db, newOrder.bikerId);
 
-    if (fcmToken != "") {
-      if (newOrderStatus == "Pending") {
-        sendMessagePending(orderId, fcmToken);
-      } else if (newOrderStatus == "Finished") {
-        sendMessageRating(orderId, fcmToken);
-      } else if (newOrderStatus == "AcceptedByBiker") {
-        sendMessageAcceptedBiker(orderId, fcmToken, bikerName);
-      } else if (newOrderStatus == "Arriving") {
-        sendMessageArriving(orderId, fcmToken, bikerName);
+      if (fcmToken != "") {
+        if (newOrderStatus == "Pending") {
+          await sendMessagePending(orderId, fcmToken);
+        } else if (newOrderStatus == "Finished") {
+          await sendMessageRating(orderId, fcmToken);
+        } else if (newOrderStatus == "AcceptedByBiker") {
+          await sendMessageAcceptedBiker(orderId, fcmToken, bikerName);
+        } else if (newOrderStatus == "Arriving") {
+          await sendMessageArriving(orderId, fcmToken, bikerName);
+        }
       }
+      await db
+        .collection(FirestoreCollections.orders)
+        .doc(orderId)
+        .update(newOrder);
+      resolve();
+    } catch (error) {
+      reject(error);
     }
-    db.collection(FirestoreCollections.orders).doc(orderId).update(newOrder);
-    return 0;
   });
+}
 
-const getUserFCMToken = async (
+export function getUserFCMToken(
   db: FirebaseFirestore.Firestore,
   userId: string
-): Promise<string> => {
-  const userSnapshot = await db
-    .collection(FirestoreCollections.customers)
-    .where("firebaseUserId", "==", userId)
-    .get();
+): Promise<string> {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const userSnapshot = await db
+        .collection(FirestoreCollections.customers)
+        .where("firebaseUserId", "==", userId)
+        .get();
 
-  if (!userSnapshot.empty && userSnapshot.docs[0].data().fcmToken) {
-    return userSnapshot.docs[0].data().fcmToken;
-  } else {
-    return "";
-  }
-};
+      if (!userSnapshot.empty && userSnapshot.docs[0].data().fcmToken) {
+        resolve(userSnapshot.docs[0].data().fcmToken);
+      } else {
+        resolve("");
+      }
+    } catch (error) {
+      reject(error);
+    }
+  });
+}
 
-const getBikerName = async (
+export function getBikerName(
   db: FirebaseFirestore.Firestore,
   bikerId: string
-): Promise<string> => {
-  const userSnapshot = await db
-    .collection(FirestoreCollections.bikers)
-    .where("firebaseUserId", "==", bikerId)
-    .get();
+): Promise<string> {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const userSnapshot = await db
+        .collection(FirestoreCollections.bikers)
+        .where("firebaseUserId", "==", bikerId)
+        .get();
 
-  if (!userSnapshot.empty) {
-    // eslint-disable-next-line max-len
-    return (
-      userSnapshot.docs[0].data().firstName +
-      " " +
-      userSnapshot.docs[0].data().lastName
-    );
-  } else {
-    return "";
-  }
-};
+      if (!userSnapshot.empty) {
+        // eslint-disable-next-line max-len
+        resolve(
+          userSnapshot.docs[0].data().firstName +
+            " " +
+            userSnapshot.docs[0].data().lastName
+        );
+      } else {
+        resolve("");
+      }
+    } catch (error) {
+      reject(error);
+    }
+  });
+}
 
-const sendMessagePending = async (orderId: string, fcmToken: string) => {
-  const message = {
-    token: fcmToken,
-    notification: {
-      title: "RIDE Pedido",
-      // eslint-disable-next-line max-len
-      body: "Nuestros colaboradores de RIDE han procesado tu orden. ¿Te gustaría continuar con el pedido?",
-    },
-    data: {
-      orderId: orderId,
-    },
-  };
-  admin.messaging().send(message);
-};
+export function sendMessagePending(
+  orderId: string,
+  fcmToken: string
+): Promise<void> {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const message = {
+        token: fcmToken,
+        notification: {
+          title: "RIDE Pedido",
+          // eslint-disable-next-line max-len
+          body: "Nuestros colaboradores de RIDE han procesado tu orden. ¿Te gustaría continuar con el pedido?",
+        },
+        data: {
+          orderId: orderId,
+        },
+      };
+      await admin.messaging().send(message);
+      resolve();
+    } catch (error) {
+      reject(error);
+    }
+  });
+}
 
-const sendMessageAcceptedBiker = async (
+export function sendMessageAcceptedBiker(
   orderId: string,
   fcmToken: string,
   bikerName: string
-) => {
-  const message = {
-    token: fcmToken,
-    notification: {
-      title: "RIDE Pedido",
-      // eslint-disable-next-line max-len
-      body: `El ciclista ${bikerName} ya va en camino.`,
-    },
-    data: {
-      orderId: orderId,
-    },
-  };
-  admin.messaging().send(message);
-};
+): Promise<void> {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const message = {
+        token: fcmToken,
+        notification: {
+          title: "RIDE Pedido",
+          // eslint-disable-next-line max-len
+          body: `El ciclista ${bikerName} ya va en camino.`,
+        },
+        data: {
+          orderId: orderId,
+        },
+      };
+      await admin.messaging().send(message);
+      resolve();
+    } catch (error) {
+      reject(error);
+    }
+  });
+}
 
-const sendMessageArriving = async (
+export function sendMessageArriving(
   orderId: string,
   fcmToken: string,
   bikerName: string
-) => {
-  const message = {
-    token: fcmToken,
-    notification: {
-      title: "RIDE Pedido",
-      // eslint-disable-next-line max-len
-      body: `${bikerName} esta llegando.`,
-    },
-    data: {
-      orderId: orderId,
-    },
-  };
-  admin.messaging().send(message);
-};
+): Promise<void> {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const message = {
+        token: fcmToken,
+        notification: {
+          title: "RIDE Pedido",
+          // eslint-disable-next-line max-len
+          body: `${bikerName} esta llegando.`,
+        },
+        data: {
+          orderId: orderId,
+        },
+      };
+      await admin.messaging().send(message);
+      resolve();
+    } catch (error) {
+      reject(error);
+    }
+  });
+}
 
-const sendMessageRating = async (orderId: string, fcmToken: string) => {
-  const message = {
-    token: fcmToken,
-    notification: {
-      title: "RIDE Pedido",
-      // eslint-disable-next-line max-len
-      body: "En RIDE valoramos tu opinión. Califica como fue tu experiencia",
-    },
-    data: {
-      orderId: orderId,
-    },
-  };
-  admin.messaging().send(message);
-};
+export function sendMessageRating(
+  orderId: string,
+  fcmToken: string
+): Promise<void> {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const message = {
+        token: fcmToken,
+        notification: {
+          title: "RIDE Pedido",
+          // eslint-disable-next-line max-len
+          body: "En RIDE valoramos tu opinión. Califica como fue tu experiencia",
+        },
+        data: {
+          orderId: orderId,
+        },
+      };
+      await admin.messaging().send(message);
+      resolve();
+    } catch (error) {
+      reject(error);
+    }
+  });
+}
