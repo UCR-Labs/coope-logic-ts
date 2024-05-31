@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/UCR-Labs/coope-logic-ts#readme",
   "devDependencies": {
+    "@types/firebase": "^3.2.1",
     "nyc": "^15.1.0",
     "path-browserify": "^1.0.1",
     "sinon": "^18.0.0",
@@ -27,6 +28,7 @@
   },
   "dependencies": {
     "@types/node": "^20.12.12",
-    "axios": "^1.6.8"
+    "axios": "^1.6.8",
+    "firebase": "^10.12.2"
   }
 }
