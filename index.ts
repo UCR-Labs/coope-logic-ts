@@ -15,4 +15,12 @@ export {
 export { encrypt, decrypt } from "./src/functions/Encryption";
 export { geocode } from "./src/functions/GoogleMaps";
 export { adminPushNotifications } from "./src/functions/PushNotification";
-export { updateOrder } from "./src/orders/orders_management";
+export {
+  updateOrder,
+  getUserFCMToken,
+  getBikerName,
+  sendMessagePending,
+  sendMessageAcceptedBiker,
+  sendMessageArriving,
+  sendMessageRating,
+} from "./src/functions/order";
