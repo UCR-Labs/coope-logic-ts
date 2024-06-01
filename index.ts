@@ -8,3 +8,6 @@ export {
   localStorageGetKeyValue,
   localStorageKeyExists,
 } from "./src/storage/LocalStorage";
+export{
+  calculateServiceCost
+}from "./src/orders/serviceCost"
