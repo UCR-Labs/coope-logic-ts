@@ -54,6 +54,26 @@ This library provides utility functions for managing key-value pairs in both an 
   - Retrieves the average ratings for a specified user.
   - Resolves with an array of documents containing the average ratings.
 
+**1.0.2**
+
+### Functions
+
+- **encrypt(text: string): string**
+  - Encrypts the provided text using the specified key and algorithm.
+  - Returns the encrypted text.
+
+- **decrypt(text: string): string**
+  - Decrypts the provided text using the specified key and algorithm.
+  - Returns the decrypted text.
+
+- **geocode(location: string, apiKey: string): Promise<any>**
+  - Fetches geolocation data for the specified location using the Google Maps Geocoding API.
+  - Requires a valid API key.
+
+- **adminPushNotifications(title: string, body: string, tokens: string[]): Promise<void>**
+  - Sends push notifications to multiple devices using Firebase Cloud Messaging.
+  - Requires valid title, body, and device tokens.
+
 ## Usage
 
 Here is an example demonstrating how to use these functions to check for the existence of a key, set the key if it does not exist, and then retrieve the value:
