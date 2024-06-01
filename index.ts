@@ -8,3 +8,7 @@ export {
   localStorageGetKeyValue,
   localStorageKeyExists,
 } from "./src/storage/LocalStorage";
+export {
+  calculateAverageRatingForUser,
+  getAverageRatings,
+} from "./src/functions/Average";
