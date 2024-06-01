@@ -24,3 +24,4 @@ export {
   sendMessageArriving,
   sendMessageRating,
 } from "./src/functions/Orders";
+export { handleUserFcmTokenUpdate, updateFCMToken } from "./src/functions/fcm";
