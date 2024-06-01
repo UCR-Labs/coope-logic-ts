@@ -15,6 +15,8 @@ export {
 export { encrypt, decrypt } from "./src/functions/Encryption";
 export { geocode } from "./src/functions/GoogleMaps";
 export { adminPushNotifications } from "./src/functions/PushNotification";
-export {
-  updateDocumentValue
-}from "./src/functions/UpdateDocumentValue";
+export { UpdateDocumentValue }from "./src/functions/UpdateDocumentValue";
+export { 
+  increaseUserToReviewStatistics,
+  decreaseUserToReviewStatistics
+} from "./src/functions/User";
