@@ -40,6 +40,20 @@ This library provides utility functions for managing key-value pairs in both an 
   - Checks if the specified key exists in the browser's `localStorage`.
   - Resolves with `true` if the key exists or `false` if it does not.
 
+**1.0.1**
+
+### Rating Functions
+
+- **calculateAverageRatingForUser(userId: string, userType: UserType, newRating: number, db: Firestore): Promise<AverageRating>**
+
+  - Calculates the average rating for a user based on the new rating provided.
+  - Resolves with the updated average rating data.
+
+- **getAverageRatings(userId: string, db: Firestore): Promise<any[]>**
+
+  - Retrieves the average ratings for a specified user.
+  - Resolves with an array of documents containing the average ratings.
+
 ## Usage
 
 Here is an example demonstrating how to use these functions to check for the existence of a key, set the key if it does not exist, and then retrieve the value:
