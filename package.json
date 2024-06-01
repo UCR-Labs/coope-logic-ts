@@ -29,6 +29,7 @@
     "@types/node": "^20.12.12",
     "axios": "^1.6.8",
     "firebase-admin": "^12.1.1",
-    "firebase-functions": "^5.0.1"
+    "firebase-functions": "^5.0.1",
+    "rideTypes": "https://github.com/gatitolabs/ride-dbtypes/archive/refs/tags/RideTypes1.3.21.tar.gz"
   }
 }
