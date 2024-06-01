@@ -23,4 +23,4 @@ export {
   sendMessageAcceptedBiker,
   sendMessageArriving,
   sendMessageRating,
-} from "./src/functions/order";
+} from "./src/functions/Orders";
