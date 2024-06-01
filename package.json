@@ -26,7 +26,7 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
-    "@google-cloud/firestore": "^7.7.0",
+    "@angular/fire": "^7.4.1",
     "@types/node": "^20.12.12",
     "axios": "^1.6.8",
     "CoopeTypes": "https://github.com/UCR-Labs/Coope-dbtypes/archive/refs/tags/CoopeTypes1.3.24.tar.gz",

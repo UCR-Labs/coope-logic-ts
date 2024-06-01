@@ -1,4 +1,4 @@
-import { Firestore, CollectionReference } from "@google-cloud/firestore";
+import { Firestore, CollectionReference } from "@angular/fire/firestore";
 import { FirestoreCollections, AverageRating, UserType } from "CoopeTypes";
 
 export function calculateAverageRatingForUser(
