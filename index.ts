@@ -19,6 +19,10 @@ export { UpdateDocumentValue }from "./src/functions/UpdateDocumentValue";
 export { 
   increaseUserToReviewStatistics,
   decreaseUserToReviewStatistics
-} from "./src/functions/User";export{
+} from "./src/functions/User";
+export {
   calculateServiceCost
-}from "./src/orders/serviceCost"
+} from "./src/orders/serviceCost";
+export {
+  rating
+} from "./src/ratings/ratings_management";
