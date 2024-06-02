@@ -1,7 +1,22 @@
 import { Change, EventContext } from "firebase-functions";
 import * as admin from "firebase-admin";
-import { FirestoreCollections, Order, OrderStatus } from "rideTypes";
-import { Firestore } from "@google-cloud/firestore";
+import {
+  Biker,
+  Customer,
+  FirestoreCollections,
+  Order,
+  OrderStatus,
+} from "CoopeTypes";
+//import { AngularFirestore } from "@angular/fire/compat/firestore";
+import {
+  Firestore,
+  collection,
+  query,
+  where,
+  getDocs,
+  doc,
+  updateDoc,
+} from "@angular/fire/firestore";
 
 export function updateOrder(
   db: Firestore,
@@ -41,9 +56,12 @@ export function updateOrder(
         ...newOrder,
       };
 
-      db.collection(FirestoreCollections.orders)
+      /* db.collection(FirestoreCollections.orders)
         .doc(orderId)
-        .update(updatedOrder);
+        .update(updatedOrder); */
+      const orderDocRef = doc(db, `${FirestoreCollections.orders}/${orderId}`);
+      await updateDoc(orderDocRef, updatedOrder);
+
       resolve(0);
     } catch (error) {
       reject(error);
@@ -57,13 +75,21 @@ export function getUserFCMToken(
 ): Promise<string> {
   return new Promise(async (resolve, reject) => {
     try {
-      const userSnapshot = await db
-        .collection(FirestoreCollections.customers)
-        .where("firebaseUserId", "==", userId)
-        .get();
+      /* const userSnapshot = await db
+        .collection(FirestoreCollections.customers, (ref) =>
+          ref.where("firebaseUserId", "==", userId)
+        )
+        .get()
+        .toPromise(); */
 
-      if (!userSnapshot.empty && userSnapshot.docs[0].data().fcmToken) {
-        resolve(userSnapshot.docs[0].data().fcmToken);
+      const customerRef = collection(db, FirestoreCollections.customers);
+      const q = query(customerRef, where("firebaseUserId", "==", userId));
+      const userSnapshot = await getDocs(q);
+
+      const customerData = userSnapshot.docs[0].data() as Customer;
+
+      if (!userSnapshot.empty && customerData.fcmToken) {
+        resolve(customerData.fcmToken);
       } else {
         resolve("");
       }
@@ -76,17 +102,20 @@ export function getUserFCMToken(
 export function getBikerName(db: Firestore, bikerId: string): Promise<string> {
   return new Promise(async (resolve, reject) => {
     try {
-      const userSnapshot = await db
-        .collection(FirestoreCollections.bikers)
-        .where("firebaseUserId", "==", bikerId)
-        .get();
+      /* const userSnapshot = await db
+        .collection(FirestoreCollections.bikers, (ref) =>
+          ref.where("firebaseUserId", "==", bikerId)
+        )
+        .get()
+        .toPromise(); */
+
+      const bikersRef = collection(db, FirestoreCollections.bikers);
+      const q = query(bikersRef, where("firebaseUserId", "==", bikerId));
+      const userSnapshot = await getDocs(q);
 
       if (!userSnapshot.empty) {
-        resolve(
-          userSnapshot.docs[0].data().firstName +
-            " " +
-            userSnapshot.docs[0].data().lastName
-        );
+        const bikerData = userSnapshot.docs[0].data() as Biker;
+        resolve(bikerData.firstName + " " + bikerData.lastName);
       } else {
         resolve("");
       }

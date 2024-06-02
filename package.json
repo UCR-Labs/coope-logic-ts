@@ -22,16 +22,14 @@
   "devDependencies": {
     "nyc": "^15.1.0",
     "path-browserify": "^1.0.1",
-    "sinon": "^18.0.0",
     "typescript": "^5.4.5"
   },
   "dependencies": {
-    "@google-cloud/firestore": "^7.7.0",
+    "@angular/fire": "^7.4.1",
     "@types/node": "^20.12.12",
-    "axios": "^1.6.8",
     "CoopeTypes": "https://github.com/UCR-Labs/Coope-dbtypes/archive/refs/tags/CoopeTypes1.3.24.tar.gz",
+    "axios": "^1.6.8",
     "firebase-admin": "^12.1.1",
-    "firebase-functions": "^5.0.1",
-    "rideTypes": "https://github.com/gatitolabs/ride-dbtypes/archive/refs/tags/RideTypes1.3.21.tar.gz"
+    "firebase-functions": "^5.0.1"
   }
 }

@@ -23,5 +23,8 @@ export {
   sendMessageAcceptedBiker,
   sendMessageArriving,
   sendMessageRating,
-} from "./src/functions/Orders";
-export { handleUserFcmTokenUpdate, updateFCMToken } from "./src/functions/fcm";
+} from "./src/functions/Orders_Management";
+export {
+  handleUserFcmTokenUpdate,
+  updateFCMToken,
+} from "./src/functions/Fcm_management";

@@ -1,4 +1,4 @@
-import { Firestore } from "@google-cloud/firestore";
+import { Firestore, collection, doc, updateDoc } from "@angular/fire/firestore";
 
 export function handleUserFcmTokenUpdate(
   userId: string,
@@ -41,9 +41,9 @@ export function updateFCMToken(
 ): Promise<void> {
   return new Promise(async (resolve, reject) => {
     try {
-      const userCollection = db.collection(collectionName);
-      const userDocRef = userCollection.doc(uid);
-      userDocRef.update({ fcmToken: fcmToken });
+      const userCollection = collection(db, collectionName);
+      const userDocRef = doc(userCollection, uid);
+      updateDoc(userDocRef, { fcmToken: fcmToken });
       resolve();
     } catch (error) {
       reject(error);
