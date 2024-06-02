@@ -19,4 +19,4 @@ export { UpdateDocumentValue }from "./src/functions/UpdateDocumentValue";
 export { 
   increaseUserToReviewStatistics,
   decreaseUserToReviewStatistics
-} from "./src/functions/User";
+} from "./src/functions/UserManager";
