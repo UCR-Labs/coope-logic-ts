@@ -1,6 +1,6 @@
 {
   "name": "coope-logic-ts",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -20,16 +20,20 @@
   },
   "homepage": "https://github.com/UCR-Labs/coope-logic-ts#readme",
   "devDependencies": {
+    "@types/firebase": "^3.2.1",
     "nyc": "^15.1.0",
     "path-browserify": "^1.0.1",
     "sinon": "^18.0.0",
     "typescript": "^5.4.5"
   },
   "dependencies": {
+    "@angular/core": "^18.0.1",
     "@angular/fire": "^18.0.1",
+    "@google-cloud/firestore": "^7.7.0",
     "@types/node": "^20.12.12",
     "axios": "^1.6.8",
     "CoopeTypes": "https://github.com/UCR-Labs/Coope-dbtypes/archive/refs/tags/CoopeTypes1.3.24.tar.gz",
+    "event-target-shim": "^6.0.2",
     "firebase": "^10.12.2",
     "firebase-admin": "^12.1.1"
   }
