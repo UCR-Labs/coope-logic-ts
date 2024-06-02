@@ -1,21 +1,15 @@
-import { Injectable } from '@angular/core';
 import { Firestore, DocumentData, PartialWithFieldValue, doc, getDoc, setDoc } from '@angular/fire/firestore';
 import { FirestoreCollections } from 'CoopeTypes';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class UpdateDocumentValue {
-  constructor(private firestore: Firestore) {}
-
-  public updateDocumentValue(
+export function updateDocumentValue(
+    firestore: Firestore,
     docId: string,
     data: PartialWithFieldValue<DocumentData>,
     collection: keyof typeof FirestoreCollections
   ): Promise<void> {
     return new Promise(async (resolve, reject) => {
       try {
-        const documentRef = doc(this.firestore, FirestoreCollections[collection], docId);
+        const documentRef = doc(firestore, FirestoreCollections[collection], docId);
         const documentSnapshot = await getDoc(documentRef);
 
         if (documentSnapshot.exists()) {
