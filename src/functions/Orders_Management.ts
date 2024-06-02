@@ -7,7 +7,6 @@ import {
   Order,
   OrderStatus,
 } from "CoopeTypes";
-//import { AngularFirestore } from "@angular/fire/compat/firestore";
 import {
   Firestore,
   collection,
@@ -56,9 +55,6 @@ export function updateOrder(
         ...newOrder,
       };
 
-      /* db.collection(FirestoreCollections.orders)
-        .doc(orderId)
-        .update(updatedOrder); */
       const orderDocRef = doc(db, `${FirestoreCollections.orders}/${orderId}`);
       await updateDoc(orderDocRef, updatedOrder);
 
@@ -75,13 +71,6 @@ export function getUserFCMToken(
 ): Promise<string> {
   return new Promise(async (resolve, reject) => {
     try {
-      /* const userSnapshot = await db
-        .collection(FirestoreCollections.customers, (ref) =>
-          ref.where("firebaseUserId", "==", userId)
-        )
-        .get()
-        .toPromise(); */
-
       const customerRef = collection(db, FirestoreCollections.customers);
       const q = query(customerRef, where("firebaseUserId", "==", userId));
       const userSnapshot = await getDocs(q);
@@ -102,13 +91,6 @@ export function getUserFCMToken(
 export function getBikerName(db: Firestore, bikerId: string): Promise<string> {
   return new Promise(async (resolve, reject) => {
     try {
-      /* const userSnapshot = await db
-        .collection(FirestoreCollections.bikers, (ref) =>
-          ref.where("firebaseUserId", "==", bikerId)
-        )
-        .get()
-        .toPromise(); */
-
       const bikersRef = collection(db, FirestoreCollections.bikers);
       const q = query(bikersRef, where("firebaseUserId", "==", bikerId));
       const userSnapshot = await getDocs(q);
