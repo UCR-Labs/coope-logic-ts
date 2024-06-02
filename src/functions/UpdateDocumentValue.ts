@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Firestore, DocumentData, PartialWithFieldValue, doc, getDoc, setDoc } from '@angular/fire/firestore';
-import { FirestoreCollections } from './models';
+import { FirestoreCollections } from 'CoopeTypes';
 
 @Injectable({
   providedIn: 'root'
