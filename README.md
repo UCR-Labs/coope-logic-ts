@@ -59,20 +59,27 @@ This library provides utility functions for managing key-value pairs in both an 
 ### Functions
 
 - **encrypt(text: string): string**
+
   - Encrypts the provided text using the specified key and algorithm.
   - Returns the encrypted text.
 
 - **decrypt(text: string): string**
+
   - Decrypts the provided text using the specified key and algorithm.
   - Returns the decrypted text.
 
 - **geocode(location: string, apiKey: string): Promise<any>**
+
   - Fetches geolocation data for the specified location using the Google Maps Geocoding API.
   - Requires a valid API key.
 
 - **adminPushNotifications(title: string, body: string, tokens: string[]): Promise<void>**
   - Sends push notifications to multiple devices using Firebase Cloud Messaging.
   - Requires valid title, body, and device tokens.
+
+**1.0.3**
+
+### Fixing bugs
 
 ## Usage
 
