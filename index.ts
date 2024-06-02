@@ -26,3 +26,6 @@ export {
 export {
   rating
 } from "./src/ratings/ratings_management";
+export {
+  getAverageRating
+} from "./src/ratings/average_rating_management"; 
