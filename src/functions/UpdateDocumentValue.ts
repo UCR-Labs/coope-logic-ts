@@ -22,5 +22,4 @@ export function updateDocumentValue(
         reject(error);
       }
     });
-  }
-}
+  };
