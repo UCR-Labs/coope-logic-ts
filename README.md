@@ -81,6 +81,19 @@ This library provides utility functions for managing key-value pairs in both an 
 
 ### Fixing bugs
 
+**1.0.4**
+
+### Functions
+- **increaseUserStatistics(User: User)**
+- **localStorageSetKeyValueAsString(key: string): Promise<any>**
+  - Receives a String instead of JSON
+- **localStorageGetKeyValueWithoutPromise(key: string): any**
+  - Nows returns the string value without promises
+- **localStorageSetKeyValue(key: string, value: any): Promise<void>**
+  - Nows encrypts the values
+- **localStorageGetKeyValue(key: string): Promise<any>**
+  - Nows encrypts the values
+
 ## Usage
 
 Here is an example demonstrating how to use these functions to check for the existence of a key, set the key if it does not exist, and then retrieve the value:
