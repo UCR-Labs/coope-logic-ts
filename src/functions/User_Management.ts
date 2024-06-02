@@ -1,19 +1,12 @@
-import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
-import { QueryDocumentSnapshot } from '@google-cloud/firestore';
 import {
   User,
-  UserToReview,
   FirestoreCollections,
   Statistics,
   AggregatedStatistic,
 } from '../models';
 
-export const increaseUserStatistics = functions.firestore
-  .document(FirestoreCollections.users + '/{userId}')
-  .onCreate(async (snapshot: QueryDocumentSnapshot) => {
-    const valueCreated: User = snapshot.data() as User;
-
+export const increaseUserStatistics = async (valueCreated: User) => {
     const db = admin.firestore();
 
     let statisticsObjId = '';
@@ -55,4 +48,4 @@ export const increaseUserStatistics = functions.firestore
     }
 
     return 0;
-  });
+  };
