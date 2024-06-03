@@ -94,13 +94,7 @@ This library provides utility functions for managing key-value pairs in both an 
 - **localStorageGetKeyValue(key: string): Promise<any>**
   - Nows encrypts the values
 
-**1.0.5**
-
-
-**1.0.6**
-
-
-**1.0.7**
+**1.0.9**
 
 ### Functions
 - **calculateServiceCost(distance: number): Promise<number>**
