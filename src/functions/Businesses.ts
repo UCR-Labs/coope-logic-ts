@@ -1,4 +1,10 @@
-import { Firestore, collection, getDocs } from "@angular/fire/firestore";
+import {
+  Firestore,
+  collection,
+  getDocs,
+  doc,
+  getDoc,
+} from "@angular/fire/firestore";
 import { Business, FirestoreCollections } from "CoopeTypes";
 
 export function getBusinesses(db: Firestore): Promise<Business[]> {
@@ -63,6 +69,63 @@ export function fetchBusinessesFromFirebase(
         };
       });
       resolve(businesses);
+    } catch (error) {
+      reject(error);
+    }
+  });
+}
+
+export function getBusinessById(
+  db: Firestore,
+  id: string
+): Promise<Business | null> {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const storedBusinesses = localStorage.getItem("businesses");
+
+      if (storedBusinesses) {
+        const businesses: Business[] = JSON.parse(storedBusinesses);
+        const business = businesses.find((b) => b.firebaseUserId === id);
+        resolve(business || null);
+      } else {
+        const businessFromFirebase = await fetchBusinessFromFirebase(db, id);
+        if (businessFromFirebase) {
+          localStorage.setItem(
+            "businesses",
+            JSON.stringify([businessFromFirebase])
+          );
+          resolve(businessFromFirebase);
+        } else {
+          resolve(null);
+        }
+      }
+    } catch (error) {
+      reject("Error al obtener el negocio: " + error);
+    }
+  });
+}
+
+export function fetchBusinessFromFirebase(
+  db: Firestore,
+  id: string
+): Promise<Business | null> {
+  return new Promise((resolve, reject) => {
+    try {
+      const docRef = doc(collection(db, FirestoreCollections.businesses), id);
+      getDoc(docRef)
+        .then((docSnap) => {
+          if (docSnap.exists()) {
+            const data = docSnap.data() as Business;
+            resolve({
+              ...data,
+            });
+          } else {
+            resolve(null);
+          }
+        })
+        .catch((error) => {
+          reject(error);
+        });
     } catch (error) {
       reject(error);
     }
