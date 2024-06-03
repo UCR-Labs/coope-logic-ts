@@ -38,4 +38,6 @@ export {
 export {
   getBusinesses,
   fetchBusinessesFromFirebase,
+  getBusinessById,
+  fetchBusinessFromFirebase,
 } from "./src/functions/Businesses";
