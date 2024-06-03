@@ -9,3 +9,6 @@ export { updateOrder, getUserFCMToken, getBikerName, sendMessagePending, sendMes
 export { handleUserFcmTokenUpdate, updateFCMToken, } from "./src/functions/Fcm_management";
 export { getProducts, fetchProductsFromFirebase, } from "./src/functions/Products";
 export { getBusinesses, fetchBusinessesFromFirebase, getBusinessById, fetchBusinessFromFirebase, } from "./src/functions/Businesses";
+export { calculateServiceCost } from "./src/orders/serviceCost";
+export { rating } from "./src/ratings/ratings_management";
+export { getAverageRating } from "./src/ratings/average_rating_management";

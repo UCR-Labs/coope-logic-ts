@@ -39,3 +39,6 @@ export {
   getBusinessById,
   fetchBusinessFromFirebase,
 } from "./src/functions/Businesses";
+export { calculateServiceCost } from "./src/orders/serviceCost";
+export { rating } from "./src/ratings/ratings_management";
+export { getAverageRating } from "./src/ratings/average_rating_management";
