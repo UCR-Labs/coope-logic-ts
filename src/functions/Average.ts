@@ -1,17 +1,18 @@
-import { Firestore, CollectionReference } from "@google-cloud/firestore";
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { FirestoreCollections, AverageRating, UserType } from "CoopeTypes";
 
 export function calculateAverageRatingForUser(
   userId: string,
   userType: UserType,
   newRating: number,
-  db: Firestore
+  db: AngularFirestore
 ): Promise<AverageRating> {
   return new Promise(async (resolve, reject) => {
     try {
       const averageRatingDoc = await db
         .collection(FirestoreCollections.averageRating)
         .doc(userId)
+        .ref
         .get();
       let averageRating: AverageRating;
 
@@ -40,18 +41,18 @@ export function calculateAverageRatingForUser(
 
 export function getAverageRatings(
   userId: string,
-  db: Firestore
+  db: AngularFirestore
 ): Promise<any[]> {
   return new Promise(async (resolve, reject) => {
     try {
       const mainDocs: any[] = [];
-      const ratingRef: CollectionReference = db.collection(
+      const ratingRef: AngularFirestoreCollection<AverageRating> = db.collection(
         FirestoreCollections.averageRating
       );
       if (userId) {
-        const finalResult = ratingRef.where("ratedUserId", "==", userId);
+        const finalResult = ratingRef.ref.where("ratedUserId", "==", userId);
         const docs = await finalResult.get();
-        const promises = docs.docs.map(async (doc) => {
+        const promises = docs.docs.map(async (doc: any) => {
           const data = doc.data() as AverageRating;
           if (data.average !== undefined) {
             const average = parseFloat(data.average.toString());
