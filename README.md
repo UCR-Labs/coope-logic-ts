@@ -94,6 +94,16 @@ This library provides utility functions for managing key-value pairs in both an 
 - **localStorageGetKeyValue(key: string): Promise<any>**
   - Nows encrypts the values
 
+**1.0.9**
+
+### Functions
+- **calculateServiceCost(distance: number): Promise<number>**
+  - Returns the total cost of a service based on the delivery distance.
+- **rating(ratingData: { raterUserId: string ratedUserId: string raterUserType: string ratedUserType: string ratingValue: number feedback: string orderId: string }): Promise<void>**
+  - Given a collection with data about the rating of an order, registers said rating in the respective order document.
+- **getAverageRating(userId: string): Promise<AverageRating[]>**
+  - Returns an array of AverageRating documents given an user ID.
+
 ## Usage
 
 Here is an example demonstrating how to use these functions to check for the existence of a key, set the key if it does not exist, and then retrieve the value:

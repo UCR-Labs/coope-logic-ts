@@ -61,6 +61,8 @@
         "rxfire": "^6.0.3",
         "rxjs": "~6.6.0",
         "tslib": "^2.3.0",
-        "zone.js": "~0.11.4"
+        "zone.js": "~0.11.4",
+        "firebase-admin": "^12.1.1",
+        "rideTypes": "https://github.com/gatitolabs/ride-dbtypes/archive/refs/tags/RideTypes1.3.21.tar.gz"
     }
 }
