@@ -1,4 +1,3 @@
-import * as admin from "firebase-admin";
 import {
   Biker,
   Customer,
@@ -37,15 +36,17 @@ export function updateOrder(
         (name) => (bikerName = name)
       );
 
+      let message: any;
+
       if (fcmToken != "") {
         if (newOrderStatus == "Pending") {
-          sendMessagePending(orderId, fcmToken);
+          message = sendMessagePending(orderId, fcmToken);
         } else if (newOrderStatus == "Finished") {
-          sendMessageRating(orderId, fcmToken);
+          message = sendMessageRating(orderId, fcmToken);
         } else if (newOrderStatus == "AcceptedByBiker") {
-          sendMessageAcceptedBiker(orderId, fcmToken, bikerName);
+          message = sendMessageAcceptedBiker(orderId, fcmToken, bikerName);
         } else if (newOrderStatus == "Arriving") {
-          sendMessageArriving(orderId, fcmToken, bikerName);
+          message = sendMessageArriving(orderId, fcmToken, bikerName);
         }
       }
 
@@ -57,7 +58,7 @@ export function updateOrder(
       const orderDocRef = doc(db, `${FirestoreCollections.orders}/${orderId}`);
       await updateDoc(orderDocRef, updatedOrder);
 
-      resolve(0);
+      resolve(message);
     } catch (error) {
       reject(error);
     }
@@ -109,7 +110,7 @@ export function getBikerName(db: Firestore, bikerId: string): Promise<string> {
 export function sendMessagePending(
   orderId: string,
   fcmToken: string
-): Promise<void> {
+): Promise<any> {
   return new Promise(async (resolve, reject) => {
     try {
       const message = {
@@ -123,8 +124,8 @@ export function sendMessagePending(
           orderId: orderId,
         },
       };
-      admin.messaging().send(message);
-      resolve();
+
+      resolve(message);
     } catch (error) {
       reject(error);
     }
@@ -135,7 +136,7 @@ export function sendMessageAcceptedBiker(
   orderId: string,
   fcmToken: string,
   bikerName: string
-): Promise<void> {
+): Promise<any> {
   return new Promise(async (resolve, reject) => {
     try {
       const message = {
@@ -149,8 +150,8 @@ export function sendMessageAcceptedBiker(
           orderId: orderId,
         },
       };
-      admin.messaging().send(message);
-      resolve();
+
+      resolve(message);
     } catch (error) {
       reject(error);
     }
@@ -161,7 +162,7 @@ export function sendMessageArriving(
   orderId: string,
   fcmToken: string,
   bikerName: string
-): Promise<void> {
+): Promise<any> {
   return new Promise(async (resolve, reject) => {
     try {
       const message = {
@@ -175,8 +176,8 @@ export function sendMessageArriving(
           orderId: orderId,
         },
       };
-      admin.messaging().send(message);
-      resolve();
+
+      resolve(message);
     } catch (error) {
       reject(error);
     }
@@ -186,7 +187,7 @@ export function sendMessageArriving(
 export function sendMessageRating(
   orderId: string,
   fcmToken: string
-): Promise<void> {
+): Promise<any> {
   return new Promise(async (resolve, reject) => {
     try {
       const message = {
@@ -200,8 +201,8 @@ export function sendMessageRating(
           orderId: orderId,
         },
       };
-      admin.messaging().send(message);
-      resolve();
+
+      resolve(message);
     } catch (error) {
       reject(error);
     }
