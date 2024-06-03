@@ -180,7 +180,6 @@ This library provides utility functions for managing key-value pairs in both an 
 
   - Gets a business from firebase.
   - Resolves on returning a business or rejects with an error on failure.
-
 ## Usage
 
 Here is an example demonstrating how to use these functions to check for the existence of a key, set the key if it does not exist, and then retrieve the value:
