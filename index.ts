@@ -24,7 +24,7 @@ export {
   sendMessageAcceptedBiker,
   sendMessageArriving,
   sendMessageRating,
-} from "./src/functions/Orders_Management";
+} from "./src/functions/Orders_management";
 export {
   handleUserFcmTokenUpdate,
   updateFCMToken,
@@ -32,7 +32,7 @@ export {
 export {
   getProducts,
   fetchProductsFromFirebase,
-} from "./src/functions/Product";
+} from "./src/functions/Products";
 export {
   getBusinesses,
   fetchBusinessesFromFirebase,
