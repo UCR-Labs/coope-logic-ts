@@ -4,3 +4,4 @@ export { calculateAverageRatingForUser, getAverageRatings, } from "./src/functio
 export { encrypt, decrypt } from "./src/functions/Encryption";
 export { geocode } from "./src/functions/GoogleMaps";
 export { updateDocumentValue } from "./src/functions/UpdateDocumentValue";
+export { adminPushNotifications } from './src/functions/PushNotification';

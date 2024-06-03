@@ -1,6 +1,6 @@
 {
     "name": "coope-logic-ts",
-    "version": "1.0.7",
+    "version": "1.0.8",
     "description": "",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
@@ -56,6 +56,8 @@
         "CoopeTypes": "https://github.com/UCR-Labs/Coope-dbtypes/archive/refs/tags/CoopeTypes1.3.24.tar.gz",
         "event-target-shim": "^6.0.2",
         "firebase": "^9.10.0",
+        "firebase-admin": "^9.10.0",
+        "long": "^4.0.0",
         "rxfire": "^6.0.3",
         "rxjs": "~6.6.0",
         "tslib": "^2.3.0",
