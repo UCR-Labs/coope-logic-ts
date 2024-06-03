@@ -4,7 +4,7 @@ import { Directions } from 'CoopeTypes';
 const parseRequest = (request: any): Directions => {
     return request.query;
   };
-
+// Necesita el request como se enviaba anterioremente + la key de google API
 export function DirectionsAPI(request: any, key : String): Promise<any> {
     return new Promise(async (resolve, reject) => {
         try {
