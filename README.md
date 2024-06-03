@@ -96,6 +96,12 @@ This library provides utility functions for managing key-value pairs in both an 
 
 **1.0.5**
 
+
+**1.0.6**
+
+
+**1.0.7**
+
 ### Functions
 - **calculateServiceCost(distance: number): Promise<number>**
   - Returns the total cost of a service based on the delivery distance.
