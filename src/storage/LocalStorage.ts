@@ -2,14 +2,15 @@ import {encrypt, decrypt} from "../functions/Encryption"
 
 export function localStorageSetKeyValue(
   key: string,
-  value: any
+  value: any,
+  encryptKey: string 
 ): Promise<void> {
   return new Promise((resolve, reject) => {
     if (!key || value === undefined) {
       return reject(new Error("Invalid key or value"));
     }
     try {
-      const encryptValue = encrypt(JSON.stringify(value), key);
+      const encryptValue = encrypt(JSON.stringify(value), encryptKey);
       localStorage.setItem(key, encryptValue);
       resolve();
     } catch (err) {
@@ -20,15 +21,16 @@ export function localStorageSetKeyValue(
 
 export function localStorageSetKeyValueAsString(
   key: string,
-  value: any
+  value: any,
+  encryptKey: string
 ): Promise<void> {
   return new Promise((resolve, reject) => {
     if (!key || value === undefined) {
       return reject(new Error("Invalid key or value"));
     }
     try {
-      const encryptalue = encrypt(String(value), key);
-      localStorage.setItem(key, encryptalue);
+      const encryptValue = encrypt(String(value), encryptKey);
+      localStorage.setItem(key, encryptValue);
       resolve();
     } catch (err) {
       reject(err);
@@ -36,12 +38,15 @@ export function localStorageSetKeyValueAsString(
   });
 }
 
-export function localStorageGetKeyValue(key: string): Promise<any> {
+export function localStorageGetKeyValue(
+  key: string,
+  encryptKey: string
+): Promise<any> {
   return new Promise((resolve, reject) => {
     try {
       const item = localStorage.getItem(key);
       if (item !== null) {
-        const decryptedValue = decrypt(item, key);
+        const decryptedValue = decrypt(item, encryptKey);
         resolve(JSON.parse(decryptedValue));
       } else {
         resolve(null);
@@ -52,11 +57,14 @@ export function localStorageGetKeyValue(key: string): Promise<any> {
   });
 }
 
-export function localStorageGetKeyValueWithoutPromise(key: string): any {
+export function localStorageGetKeyValueWithoutPromise(
+  key: string,
+  encryptKey: string
+): any {
   try {
     const item = localStorage.getItem(key);
     if (item !== null) {
-      const decryptedValue = decrypt(item, key);
+      const decryptedValue = decrypt(item, encryptKey);
       return JSON.parse(decryptedValue);
     }
   } catch (err) {
