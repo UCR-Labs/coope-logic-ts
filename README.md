@@ -59,20 +59,40 @@ This library provides utility functions for managing key-value pairs in both an 
 ### Functions
 
 - **encrypt(text: string): string**
+
   - Encrypts the provided text using the specified key and algorithm.
   - Returns the encrypted text.
 
 - **decrypt(text: string): string**
+
   - Decrypts the provided text using the specified key and algorithm.
   - Returns the decrypted text.
 
 - **geocode(location: string, apiKey: string): Promise<any>**
+
   - Fetches geolocation data for the specified location using the Google Maps Geocoding API.
   - Requires a valid API key.
 
 - **adminPushNotifications(title: string, body: string, tokens: string[]): Promise<void>**
   - Sends push notifications to multiple devices using Firebase Cloud Messaging.
   - Requires valid title, body, and device tokens.
+
+**1.0.3**
+
+### Fixing bugs
+
+**1.0.4**
+
+### Functions
+- **increaseUserStatistics(User: User)**
+- **localStorageSetKeyValueAsString(key: string): Promise<any>**
+  - Receives a String instead of JSON
+- **localStorageGetKeyValueWithoutPromise(key: string): any**
+  - Nows returns the string value without promises
+- **localStorageSetKeyValue(key: string, value: any): Promise<void>**
+  - Nows encrypts the values
+- **localStorageGetKeyValue(key: string): Promise<any>**
+  - Nows encrypts the values
 
 ## Usage
 

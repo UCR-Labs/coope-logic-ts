@@ -15,7 +15,26 @@ export function localStorageSetKeyValue(
   });
 }
 
-export function localStorageGetKeyValue(key: string): Promise<any> {
+export function localStorageSetKeyValueAsString(
+  key: string,
+  value: any,
+): Promise<void> {
+  return new Promise((resolve, reject) => {
+    if (!key || value === undefined) {
+      return reject(new Error("Invalid key or value"));
+    }
+    try {
+      localStorage.setItem(key, value);
+      resolve();
+    } catch (err) {
+      reject(err);
+    }
+  });
+}
+
+export function localStorageGetKeyValue(
+  key: string
+): Promise<any> {
   return new Promise((resolve, reject) => {
     try {
       const item = localStorage.getItem(key);
@@ -26,6 +45,22 @@ export function localStorageGetKeyValue(key: string): Promise<any> {
     }
   });
 }
+
+export function localStorageGetKeyValueWithoutPromise(
+  key: string,
+  encryptKey: string
+): any {
+  try {
+    const item = localStorage.getItem(key);
+    if (item !== null) {
+      return JSON.parse(item);
+    }
+  } catch (err) {
+    console.error("Error parsing JSON from localStorage", err);
+    return null;
+  }
+}
+
 
 export function localStorageKeyExists(key: string): Promise<boolean> {
   return new Promise((resolve) => {
