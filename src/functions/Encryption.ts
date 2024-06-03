@@ -1,4 +1,5 @@
 import * as crypto from 'crypto';
+import { Buffer  } from 'buffer';
 
 export function encrypt(text: string, key: string): string {
   if (!key) {
