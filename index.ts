@@ -24,3 +24,17 @@ export {
 export {
   getAverageRating
 } from "./src/ratings/average_rating_management";
+
+export {
+  updateOrder,
+  getUserFCMToken,
+  getBikerName,
+  sendMessagePending,
+  sendMessageAcceptedBiker,
+  sendMessageArriving,
+  sendMessageRating,
+} from "./src/functions/Orders_Management";
+export {
+  handleUserFcmTokenUpdate,
+  updateFCMToken,
+} from "./src/functions/Fcm_management";
