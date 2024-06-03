@@ -14,17 +14,10 @@ export {
 } from "./src/functions/Average";
 export { encrypt, decrypt } from "./src/functions/Encryption";
 export { geocode } from "./src/functions/GoogleMaps";
-export { updateDocumentValue }from "./src/functions/UpdateDocumentValue";
-export {
-  calculateServiceCost
-} from "./src/orders/serviceCost";
-export {
-  rating
-} from "./src/ratings/ratings_management";
-export {
-  getAverageRating
-} from "./src/ratings/average_rating_management";
-
+export { updateDocumentValue } from "./src/functions/UpdateDocumentValue";
+export { calculateServiceCost } from "./src/orders/serviceCost";
+export { rating } from "./src/ratings/ratings_management";
+export { getAverageRating } from "./src/ratings/average_rating_management";
 export {
   updateOrder,
   getUserFCMToken,
@@ -38,3 +31,11 @@ export {
   handleUserFcmTokenUpdate,
   updateFCMToken,
 } from "./src/functions/Fcm_management";
+export {
+  getProducts,
+  fetchProductsFromFirebase,
+} from "./src/functions/Product";
+export {
+  getBusinesses,
+  fetchBusinessesFromFirebase,
+} from "./src/functions/Businesses";
