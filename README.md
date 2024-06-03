@@ -161,6 +161,26 @@ This library provides utility functions for managing key-value pairs in both an 
   - Auxiliar function to get the products from Firebase.
   - Resolves on returning all the products or rejects with an error on failure.
 
+- **getBusinesses(db: Firestore): Promise<Business[]>**
+
+  - Gets all business from localstorage.
+  - Resolves on returning all business or rejects with an error on failure.
+
+- **fetchBusinessesFromFirebase(db: Firestore): Promise<Business[]>**
+
+  - Gets all business from firebase.
+  - Resolves on returning all business or rejects with an error on failure.
+
+- **getBusinessById(db: Firestore, id: string): Promise<Business | null>**
+
+  - Gets a business from localstorage.
+  - Resolves on returning a business or rejects with an error on failure.
+
+- **fetchBusinessFromFirebase(db: Firestore, id: string): Promise<Business | null>**
+
+  - Gets a business from firebase.
+  - Resolves on returning a business or rejects with an error on failure.
+
 ## Usage
 
 Here is an example demonstrating how to use these functions to check for the existence of a key, set the key if it does not exist, and then retrieve the value:
