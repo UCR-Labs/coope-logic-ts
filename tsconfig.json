@@ -10,6 +10,13 @@
     "declaration": true,
     "target": "es2017"
   },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true,
+    "fullTemplateTypeCheck": true
+  },
   "compileOnSave": true,
   "include": ["**/*.ts"]
 }

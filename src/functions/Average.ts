@@ -1,21 +1,31 @@
-import { Firestore, CollectionReference } from "@angular/fire/firestore";
+import { Injectable } from "@angular/core";
+import {
+  AngularFirestore,
+  AngularFirestoreCollection,
+} from "@angular/fire/compat/firestore"; // Ensure correct import
 import { FirestoreCollections, AverageRating, UserType } from "CoopeTypes";
 
-export function calculateAverageRatingForUser(
-  userId: string,
-  userType: UserType,
-  newRating: number,
-  db: Firestore
-): Promise<AverageRating> {
-  return new Promise(async (resolve, reject) => {
+@Injectable({
+  providedIn: "root",
+})
+export class UserService {
+  constructor(private firestore: AngularFirestore) {}
+
+  async calculateAverageRatingForUser(
+    userId: string,
+    userType: UserType,
+    newRating: number
+  ): Promise<AverageRating> {
     try {
-      const averageRatingDoc = await db
+      const averageRatingDoc = await this.firestore
         .collection(FirestoreCollections.averageRating)
         .doc(userId)
-        .get();
+        .get()
+        .toPromise(); // Convert Observable to Promise
+
       let averageRating: AverageRating;
 
-      if (averageRatingDoc.exists) {
+      if (averageRatingDoc && averageRatingDoc.exists) {
         averageRating = averageRatingDoc.data() as AverageRating;
         averageRating.numberOfRatings += 1;
         averageRating.sumOfRatings += newRating;
@@ -31,46 +41,44 @@ export function calculateAverageRatingForUser(
         };
       }
 
-      resolve(averageRating);
+      return averageRating;
     } catch (error) {
-      reject(error);
+      console.error("Error fetching average rating:", error);
+      throw error;
     }
-  });
-}
+  }
 
-export function getAverageRatings(
-  userId: string,
-  db: Firestore
-): Promise<any[]> {
-  return new Promise(async (resolve, reject) => {
-    try {
-      const mainDocs: any[] = [];
-      const ratingRef: CollectionReference = db.collection(
-        FirestoreCollections.averageRating
-      );
-      if (userId) {
-        const finalResult = ratingRef.where("ratedUserId", "==", userId);
-        const docs = await finalResult.get();
-        const promises = docs.docs.map(async (doc) => {
-          const data = doc.data() as AverageRating;
-          if (data.average !== undefined) {
-            const average = parseFloat(data.average.toString());
-            if (!isNaN(average)) {
-              const formattedAverage = average.toFixed(1);
-              mainDocs.push({
-                ...data,
-                _id: doc.id,
-                average: formattedAverage,
-              });
+  getAverageRatings(userId: string, db: AngularFirestore): Promise<any[]> {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const mainDocs: any[] = [];
+        const ratingRef: AngularFirestoreCollection = this.firestore.collection(
+          FirestoreCollections.averageRating
+        );
+        if (userId) {
+          const finalResult = ratingRef.ref.where("ratedUserId", "==", userId);
+          const docs = await finalResult.get();
+          const promises = docs.docs.map(async (doc) => {
+            const data = doc.data() as AverageRating;
+            if (data.average !== undefined) {
+              const average = parseFloat(data.average.toString());
+              if (!isNaN(average)) {
+                const formattedAverage = average.toFixed(1);
+                mainDocs.push({
+                  ...data,
+                  _id: doc.id,
+                  average: formattedAverage,
+                });
+              }
             }
-          }
-        });
-        await Promise.all(promises);
-      }
+          });
+          await Promise.all(promises);
+        }
 
-      resolve(mainDocs);
-    } catch (error) {
-      reject(error);
-    }
-  });
+        resolve(mainDocs);
+      } catch (error) {
+        reject(error);
+      }
+    });
+  }
 }
