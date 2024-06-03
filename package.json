@@ -54,7 +54,7 @@
         "ag-grid-community": "^30.2.0",
         "axios": "^1.6.8",
         "buffer": "^6.0.3",
-        "CoopeTypes": "https://github.com/UCR-Labs/Coope-dbtypes/archive/refs/tags/CoopeTypes1.3.24.tar.gz",
+        "CoopeTypes": "https://github.com/UCR-Labs/Coope-dbtypes/archive/refs/tags/CoopeTypes1.3.26.tar.gz",
         "event-target-shim": "^6.0.2",
         "firebase": "^9.10.0",
         "long": "^4.0.0",

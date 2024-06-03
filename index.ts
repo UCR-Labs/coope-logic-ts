@@ -14,10 +14,8 @@ export {
 } from "./src/functions/Average";
 export { encrypt, decrypt } from "./src/functions/Encryption";
 export { geocode } from "./src/functions/GoogleMaps";
+export { DirectionsAPI } from "./src/functions/Endpoints";
 export { updateDocumentValue } from "./src/functions/UpdateDocumentValue";
-export { calculateServiceCost } from "./src/orders/serviceCost";
-export { rating } from "./src/ratings/ratings_management";
-export { getAverageRating } from "./src/ratings/average_rating_management";
 export {
   updateOrder,
   getUserFCMToken,
@@ -41,4 +39,3 @@ export {
   getBusinessById,
   fetchBusinessFromFirebase,
 } from "./src/functions/Businesses";
-
