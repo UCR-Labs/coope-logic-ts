@@ -94,6 +94,92 @@ This library provides utility functions for managing key-value pairs in both an 
 - **localStorageGetKeyValue(key: string): Promise<any>**
   - Nows encrypts the values
 
+**1.0.10**
+
+### Functions
+- **calculateServiceCost(distance: number): Promise<number>**
+  - Returns the total cost of a service based on the delivery distance.
+- **rating(ratingData: { raterUserId: string ratedUserId: string raterUserType: string ratedUserType: string ratingValue: number feedback: string orderId: string }): Promise<void>**
+  - Given a collection with data about the rating of an order, registers said rating in the respective order document.
+- **getAverageRating(userId: string): Promise<AverageRating[]>**
+  - Returns an array of AverageRating documents given an user ID.
+
+- **updateOrder(db: Firestore, change: Change<admin.firestore.DocumentSnapshot>, context: EventContext): Promise<any>**
+
+  - Update an order's information.
+  - Parameter change: the order that want to be updated, it will become a new order.
+  - Paramete context: used to get the new id for the new order.
+  - Resolves on success with a 0 or rejects with an error on failure.
+
+- **getUserFCMToken(db: Firestore, userId: string): Promise<string>**
+
+  - Get the user's FCM token.
+  - Resolves on success with a string or rejects with an error on failure.
+
+- **getBikerName(db: Firestore, bikerId: string): Promise<string>**
+
+  - Get the biker's name.
+  - Resolves on success with a string or rejects with an error on failure.
+
+- **sendMessagePending(orderId: string, fcmToken: string): Promise<void>**
+
+  - Send a notification to the user, order's status is pending.
+  - Resolves on success or rejects with an error on failure.
+
+- **sendMessageAcceptedBiker(orderId: string, fcmToken: string, bikerName: string): Promise<void>**
+
+  - Send a notification to the user, order's status is on the way.
+  - Resolves on success or rejects with an error on failure.
+
+- **sendMessageArriving(orderId: string, fcmToken: string, bikerName: string): Promise<void>**
+
+  - Send a notification to the user, order's status is arriving.
+  - Resolves on success or rejects with an error on failure.
+
+- **sendMessageRating(orderId: string, fcmToken: string): Promise<void>**
+
+  - Send a notification to the user for rating.
+  - Resolves on success or rejects with an error on failure.
+
+- **handleUserFcmTokenUpdate(userId: string, fcmToken: string, collectionName: string, db: Firestore): Promise<any>**
+
+  - Handles updating the user's fcmToken.
+  - Resolves on success or rejects with an error on failure.
+
+- **updateFCMToken({uid, fcmToken, collectionName,}: {uid: string; fcmToken: string; collectionName: string;}, db: Firestore): Promise<void>**
+
+  - Updates the user's fcmToken.
+  - Resolves on success or rejects with an error on failure.
+
+- **getProducts(db: Firestore): Promise<ProductPhotoAndTags[]>**
+
+  - Get all products.
+  - Resolves on returning all the products or rejects with an error on failure.
+
+- **fetchProductsFromFirebase(db: Firestore): Promise<ProductPhotoAndTags[]>**
+
+  - Auxiliar function to get the products from Firebase.
+  - Resolves on returning all the products or rejects with an error on failure.
+
+- **getBusinesses(db: Firestore): Promise<Business[]>**
+
+  - Gets all business from localstorage.
+  - Resolves on returning all business or rejects with an error on failure.
+
+- **fetchBusinessesFromFirebase(db: Firestore): Promise<Business[]>**
+
+  - Gets all business from firebase.
+  - Resolves on returning all business or rejects with an error on failure.
+
+- **getBusinessById(db: Firestore, id: string): Promise<Business | null>**
+
+  - Gets a business from localstorage.
+  - Resolves on returning a business or rejects with an error on failure.
+
+- **fetchBusinessFromFirebase(db: Firestore, id: string): Promise<Business | null>**
+
+  - Gets a business from firebase.
+  - Resolves on returning a business or rejects with an error on failure.
 ## Usage
 
 Here is an example demonstrating how to use these functions to check for the existence of a key, set the key if it does not exist, and then retrieve the value:
