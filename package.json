@@ -1,6 +1,6 @@
 {
   "name": "coope-logic-ts",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "description": "",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -30,9 +30,13 @@
     "@angular/core": "^18.0.1",
     "@angular/fire": "^18.0.1",
     "@google-cloud/firestore": "^7.7.0",
+    "@angular/core": "^18.0.1",
+    "@angular/fire": "^18.0.1",
+    "@google-cloud/firestore": "^7.7.0",
     "@types/node": "^20.12.12",
     "axios": "^1.6.8",
     "CoopeTypes": "https://github.com/UCR-Labs/Coope-dbtypes/archive/refs/tags/CoopeTypes1.3.24.tar.gz",
+    "event-target-shim": "^6.0.2",
     "firebase": "^10.12.2",
     "firebase-admin": "^12.1.1",
     "rideTypes": "https://github.com/gatitolabs/ride-dbtypes/archive/refs/tags/RideTypes1.3.21.tar.gz"
