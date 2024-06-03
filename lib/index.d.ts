@@ -3,4 +3,5 @@ export { localStorageSetKeyValue, localStorageGetKeyValue, localStorageKeyExists
 export { calculateAverageRatingForUser, getAverageRatings, } from "./src/functions/Average";
 export { encrypt, decrypt } from "./src/functions/Encryption";
 export { geocode } from "./src/functions/GoogleMaps";
+export { DirectionsAPI } from "./src/functions/Endpoints";
 export { updateDocumentValue } from "./src/functions/UpdateDocumentValue";
