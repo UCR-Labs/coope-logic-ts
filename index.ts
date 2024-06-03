@@ -14,7 +14,6 @@ export {
 } from "./src/functions/Average";
 export { encrypt, decrypt } from "./src/functions/Encryption";
 export { geocode } from "./src/functions/GoogleMaps";
-export { adminPushNotifications } from "./src/functions/PushNotification";
 export { updateDocumentValue }from "./src/functions/UpdateDocumentValue";export {
   calculateAverageRatingForUser,
   getAverageRatings,
