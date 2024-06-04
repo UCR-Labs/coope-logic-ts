@@ -104,11 +104,9 @@ This library provides utility functions for managing key-value pairs in both an 
 - **getAverageRating(userId: string): Promise<AverageRating[]>**
   - Returns an array of AverageRating documents given an user ID.
 
-- **updateOrder(db: Firestore, change: Change<admin.firestore.DocumentSnapshot>, context: EventContext): Promise<any>**
+- **updateOrder(db: Firestore, order: Order, docId: string): Promise<any>**
 
   - Update an order's information.
-  - Parameter change: the order that want to be updated, it will become a new order.
-  - Paramete context: used to get the new id for the new order.
   - Resolves on success with a 0 or rejects with an error on failure.
 
 - **getUserFCMToken(db: Firestore, userId: string): Promise<string>**
