@@ -126,6 +126,3 @@ Este documento enumera todas las funciones disponibles en el proyecto, junto con
   - **Descripción:** Recupera un negocio por ID desde Firebase.
   - **Estado de Revisión:** Pendiente
 
-## Notas Adicionales
-
-(Notas adicionales de la revisión del archivo README.md)
