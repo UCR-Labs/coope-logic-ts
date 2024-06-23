@@ -2,26 +2,26 @@
 
 Este documento contiene una tabla que muestra el estado de uso de cada función en cuatro proyectos diferentes. Cada celda indicará si la función está siendo utilizada (`Sí`) o no (`No`) en el proyecto correspondiente.
 
-| Función                        | Descripción                                 | Coope-Client | Coope-Web  | Coope-Business | Proyecto 4 |
-|--------------------------------|---------------------------------------------|--------------|------------|----------------|------------|
-| **src/functions/**             |                                             |              |            |                |            |
-| Average.ts                     | Calcula el valor promedio de un conjunto de datos |    No        |    No      |    No          |            |
-| Businesses.ts                  | Gestiona la lógica relacionada con los negocios |    No        |    No      |    No          |            |
-| Encryption.ts                  | Proporciona funciones de cifrado y descifrado de datos |    No        |    No      |    No          |            |
-| Endpoints.ts                   | Define los endpoints de la API              |    No        |    No      |    No          |            |
-| Fcm_management.ts              | Gestiona la mensajería de Firebase Cloud Messaging (FCM) |    No        |    No      |    No          |            |
-| GoogleMaps.ts                  | Interactúa con la API de Google Maps        |    No        |    No      |    No          |            |
-| Orders_management.ts           | Gestiona la lógica relacionada con los pedidos |    No        |    No      |    No          |            |
-| Products.ts                    | Gestiona la lógica relacionada con los productos |    No        |    No      |    No          |            |
-| UpdateDocumentValue.ts         | Actualiza el valor de un documento en la base de datos |    No        |    No      |    No          |            |
-| **src/orders/**                |                                             |              |            |                |            |
-| serviceCost.ts                 | Calcula el costo del servicio               |    No        |    No      |    No          |            |
-| **src/ratings/**               |                                             |              |            |                |            |
-| average_rating_management.ts   | Gestiona el cálculo de la calificación promedio |    No        |    No      |    No          |            |
-| ratings_management.ts          | Gestiona las calificaciones de los usuarios |    No        |    No      |    No          |            |
-| **src/storage/**               |                                             |              |            |                |            |
-| Cache.ts                       | Gestiona la caché en memoria                |    No        |    No      |    No          |            |
-| LocalStorage.ts                | Gestiona el almacenamiento local del navegador |    Sí        |    Sí      |    Sí          |            |
+| Función                        | Descripción                                 | Coope-Client | Coope-Web  | Coope-Business | Coope-Biker |
+|--------------------------------|---------------------------------------------|--------------|------------|----------------|-------------|
+| **src/functions/**             |                                             |              |            |                |             |
+| Average.ts                     | Calcula el valor promedio de un conjunto de datos |    No        |    No      |    No          |    No       |
+| Businesses.ts                  | Gestiona la lógica relacionada con los negocios |    No        |    No      |    No          |    No       |
+| Encryption.ts                  | Proporciona funciones de cifrado y descifrado de datos |    No        |    No      |    No          |    No       |
+| Endpoints.ts                   | Define los endpoints de la API              |    No        |    No      |    No          |    No       |
+| Fcm_management.ts              | Gestiona la mensajería de Firebase Cloud Messaging (FCM) |    No        |    No      |    No          |    No       |
+| GoogleMaps.ts                  | Interactúa con la API de Google Maps        |    No        |    No      |    No          |    No       |
+| Orders_management.ts           | Gestiona la lógica relacionada con los pedidos |    No        |    No      |    No          |    No       |
+| Products.ts                    | Gestiona la lógica relacionada con los productos |    No        |    No      |    No          |    No       |
+| UpdateDocumentValue.ts         | Actualiza el valor de un documento en la base de datos |    No        |    No      |    No          |    No       |
+| **src/orders/**                |                                             |              |            |                |             |
+| serviceCost.ts                 | Calcula el costo del servicio               |    No        |    No      |    No          |    No       |
+| **src/ratings/**               |                                             |              |            |                |             |
+| average_rating_management.ts   | Gestiona el cálculo de la calificación promedio |    No        |    No      |    No          |    No       |
+| ratings_management.ts          | Gestiona las calificaciones de los usuarios |    No        |    No      |    No          |    No       |
+| **src/storage/**               |                                             |              |            |                |             |
+| Cache.ts                       | Gestiona la caché en memoria                |    No        |    No      |    No          |    No       |
+| LocalStorage.ts                | Gestiona el almacenamiento local del navegador |    Sí        |    Sí      |    Sí          |    Sí       |
 
 ## Leyenda
 
@@ -61,7 +61,36 @@ En el archivo `theme.service.ts` del proyecto Coope-Web se están utilizando las
 
 ### Coope-Business: Uso de Funciones
 
+En el archivo `navigation-panel.components.ts` del proyecto Coope-Business no se están utilizando funciones de la librería "logica".
+
 En el archivo `view-product-list-page.ts` del proyecto Coope-Business se están utilizando las siguientes funciones de la librería "logica":
+
 - **localStorageSetKeyValue**: Se utiliza en las funciones `getProductList` y `refreshTags` para guardar los datos en `localStorage`.
 - **localStorageGetKeyValue**: Se utiliza en la función `ngOnInit` para obtener los datos desde `localStorage`.
 - **localStorageKeyExists**: Se utiliza en la función `ngOnInit` para verificar si los datos existen en `localStorage`.
+
+### Coope-Biker: Uso de Funciones
+
+En el archivo `delivery-details.page.ts` del proyecto Coope-Biker se están utilizando las siguientes funciones de la librería "logica":
+
+- **localStorageSetKeyValue**: Se utiliza en las funciones `acceptDelivery`, `finishOrder` para guardar los datos en `localStorage`.
+- **localStorageGetKeyValue**: Se utiliza en la función `ngOnInit` para obtener los datos desde `localStorage`.
+- **localStorageKeyExists**: Se utiliza en la función `ngOnInit` para verificar si los datos existen en `localStorage`.
+
+En el archivo `home.page.ts` del proyecto Coope-Biker se están utilizando las siguientes funciones de la librería "logica":
+
+- **localStorageSetKeyValue**: Se utiliza en las funciones `sendVerificationMessage`, `updatefcmToken` y `onSubmit` para guardar los datos en `localStorage`.
+- **localStorageGetKeyValue**: Se utiliza en las funciones `ngOnInit` y `onSubmit` para obtener los datos desde `localStorage`.
+- **localStorageKeyExists**: Se utiliza en las funciones `ngOnInit`, `updatefcmToken` y `onSubmit` para verificar si los datos existen en `localStorage`.
+
+En el archivo `list-deliveries-available.page.ts` del proyecto Coope-Biker se están utilizando las siguientes funciones de la librería "logica":
+
+- **localStorageSetKeyValue**: Se utiliza en las funciones `details` para guardar los datos en `localStorage`.
+- **localStorageGetKeyValue**: Se utiliza en las funciones `ngOnInit` para obtener los datos desde `localStorage`.
+- **localStorageKeyExists**: Se utiliza en las funciones `ngOnInit` para verificar si los datos existen en `localStorage`.
+
+En el archivo `theme.ts` del proyecto Coope-Biker se están utilizando las siguientes funciones de la librería "logica":
+
+- **localStorageSetKeyValue**: Se utiliza en las funciones `queryGuiTheme` para guardar los datos en `localStorage`.
+- **localStorageGetKeyValue**: Se utiliza en las funciones `queryGuiTheme` para obtener los datos desde `localStorage`.
+- **localStorageKeyExists**: Se utiliza en las funciones `queryGuiTheme` para verificar si los datos existen en `localStorage`.
