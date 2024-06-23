@@ -24,6 +24,7 @@
         "@angular-devkit/build-angular": "^14.2.3",
         "@angular/cli": "^14.2.10",
         "@angular/compiler-cli": "^14.2.2",
+        "@types/crypto-js": "^4.2.2",
         "@types/firebase": "^3.2.1",
         "@types/node": "^20.14.0",
         "firebase-tools": "^9.21.0",
@@ -37,6 +38,7 @@
         "@angular/common": "^14.2.2",
         "@angular/core": "^14.2.2",
         "CoopeTypes": "https://github.com/UCR-Labs/Coope-dbtypes/archive/refs/tags/CoopeTypes1.3.26.tar.gz",
+        "crypto-js": "^4.2.0",
         "long": "^4.0.0",
         "rideTypes": "https://github.com/gatitolabs/ride-dbtypes/archive/refs/tags/RideTypes1.3.21.tar.gz"
     }
